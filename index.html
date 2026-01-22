@@ -16,7 +16,7 @@
 }
 
 #zohoSupportWebToCase td {
-    padding: 15px 5px;
+    padding: 11px 5px;
 }
 
 #zohoSupportWebToCase textarea, 
@@ -83,10 +83,9 @@
 }
 
 .zsFontClass {
-    color: #333;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    font-weight: 500;
+    color: #000000;
+    font-family: Arial;
+    font-size: 13px;
 }
 
 .manfieldbdr {
@@ -129,34 +128,20 @@ input[type=file]::-webkit-file-upload-button {
 
 .wtcuploadfile {
     float: left;
-    color: #00b4a8;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.wtcuploadfile:hover {
-    color: #009a8f;
+    color: #00a3fe;
 }
 
 .filenamecls {
     margin-right: 15px;
     float: left;
     margin-top: 5px;
-    padding: 10px 15px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border-radius: 8px;
+    padding: 8px 12px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
     display: inline-flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 8px;
-    border: 1px solid #e0e0e0;
-    transition: all 0.2s ease;
-}
-
-.filenamecls:hover {
-    border-color: #00b4a8;
-    box-shadow: 0 2px 8px rgba(0, 180, 168, 0.1);
 }
 
 .filenamecls a {
@@ -320,7 +305,7 @@ body {
 }
 
 .zsFormClass strong {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     display: block;
     margin-bottom: 10px;
 }
@@ -353,7 +338,7 @@ body {
     z-index: 1000;
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: space-between;
 }
 
 .form-header img {
@@ -362,10 +347,13 @@ body {
 }
 
 .form-header-title {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: #333;
     font-weight: 600;
     margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* Footer */
@@ -465,27 +453,20 @@ body {
 /* Móviles pequeños */
 @media screen and (max-width: 480px) {
     body {
-        padding: 0;
-        min-height: auto;
-        background: #f8f9fa;
-    }
-    
-    #zohoSupportWebToCase {
-        padding: 15px;
+        padding-top: 70px;
     }
     
     .zsFormClass {
-        padding: 25px 20px;
-        border-radius: 8px;
+        padding: 15px;
     }
     
     .zsFormClass strong {
-        font-size: 1.5rem;
+        font-size: 1.1rem;
     }
     
     .form-instructions {
         font-size: 13px;
-        margin-bottom: 25px;
+        margin-bottom: 20px;
     }
     
     .field-example {
@@ -493,37 +474,46 @@ body {
     }
     
     .zsFontClass {
-        font-size: 13px;
+        font-size: 12px;
     }
     
     #zohoSupportWebToCase textarea,
     #zohoSupportWebToCase input[type='text'],
     #zohoSupportWebToCase select {
-        padding: 10px 12px;
-        font-size: 14px;
+        padding: 8px;
+        font-size: 13px;
     }
     
     #zohoSupportWebToCase td {
-        padding: 10px 5px;
+        padding: 8px 5px;
     }
     
     .zsFormClass input[type='submit'],
     .zsFormClass input[type='button'] {
-        padding: 12px 15px;
-        font-size: 15px;
+        padding: 10px 15px;
+        font-size: 14px;
     }
     
     .form-header {
-        padding: 20px 15px;
+        padding: 12px 15px;
+        gap: 10px;
     }
     
     .form-header img {
-        max-width: 140px;
+        max-width: 80px;
+    }
+    
+    .form-header-title {
+        font-size: 1.1rem;
+    }
+    
+    .zsFormClass strong {
+        font-size: 1rem;
     }
     
     .form-footer {
         font-size: 12px;
-        padding: 20px 15px;
+        padding: 15px;
     }
 }
 </style>
@@ -1112,9 +1102,10 @@ zsChangeMousePointer();
 
 <body>
 
-<!-- Header con logo -->
+<!-- Header fijo con logo y título -->
 <div class="form-header">
     <img src="https://www.queop.com/img/2024/logo_header.png" alt="Queop Logo">
+    <h1 class="form-header-title">Soporte Chile</h1>
 </div>
 
 <div id='zohoSupportWebToCase' align='center'>
