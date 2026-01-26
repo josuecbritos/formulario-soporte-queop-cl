@@ -1108,6 +1108,10 @@ document.forms['zsWebToCase_1245088000000523070']['zsCloudPickerAttachments'].va
 }
 zsRearrangeFileBrowseAttachments();
 zsChangeMousePointer();
+document.forms['zsWebToCase_1245088000000523070']['zsWebFormCaptchaWord'].value = '';
+if(window.zsRegenerateCaptcha){
+zsRegenerateCaptcha();
+}
 }
 </script>
 </head>
@@ -1181,24 +1185,27 @@ Ingresa tus datos, describe tu solicitud y adjunta archivos si es necesario. Pre
 </td>
 </tr>
 <tr>
-<td nowrap class='zsFontClass' width='25%' align='left'>Captcha&nbsp;</td>
-<td>
-<div id='zsCaptchaLoading'><strong>Cargando…<br><br></strong></div>
+<td nowrap class='zsFontClass' width='25%' align='left'>Verificación&nbsp;</td>
+<td align='left' width='75%'>
+<div class="captcha-container">
+<div id='zsCaptchaLoading'><strong>Cargando verificación...</strong></div>
 <div id='zsCaptcha' style='display:none;'>
-<img src='#' id='zsCaptchaUrl' name="zsCaptchaImage">
-<a href='javascript:;' style='color:#00a3fe; cursor:pointer; margin-left:10px; vertical-align:middle;text-decoration: none;' class='zsFontClass' onclick='zsRegenerateCaptcha()'>Actualizar</a>
+<img src='#' id='zsCaptchaUrl' name="zsCaptchaImage" alt="Captcha">
+<a href='javascript:;' onclick='zsRegenerateCaptcha()'>🔄 Actualizar</a>
 </div>
-<div>
-<input type='text' name='zsWebFormCaptchaWord'/>
+<div style="margin-top: 10px;">
+<input type='text' name='zsWebFormCaptchaWord' placeholder='Ingresa el código aquí'/>
 <input type='hidden' name='zsCaptchaSrc' value=''/>
+</div>
 </div>
 </td>
 </tr>
 <tr>
-<td style='padding: 11px 5px 0px 5px;' colspan='2' align='center' width='25%'>
+<td style='padding: 11px 5px 0px 5px;' colspan='2' width='25%'>
+<div class="button-container">
+<input type='button' class='zsFontClass' value='Cancelar' onclick="zsResetWebForm('1245088000000523070')">
 <input type='submit' id="zsSubmitButton_1245088000000523070" class='zsFontClass' value='Enviar'>
-&nbsp; &nbsp;
-<input type='button' class='zsFontClass' value='Restablecer' onclick="zsResetWebForm('1245088000000523070')">
+</div>
 </td>
 </tr>
 </table>
