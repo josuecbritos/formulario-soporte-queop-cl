@@ -420,6 +420,27 @@ body {
     height: auto;
 }
 
+/* Captcha simple */
+.simple-captcha {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.captcha-question {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.captcha-input {
+    width: 80px !important;
+    padding: 8px !important;
+    font-size: 16px !important;
+    text-align: center;
+}
+
 /* Archivos adjuntos */
 .wtcuploadfile {
     display: block;
@@ -459,6 +480,12 @@ body {
     .zsFormClass input[type='button'] {
         width: auto;
         min-width: 120px;
+    }
+    
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
     }
 }
 
@@ -766,6 +793,18 @@ tt.style.top = (u + top) + 'px';
 var zsWebFormMandatoryFields = new Array("Contact Name","Cliente","Email","Subject");
 var zsFieldsDisplayLabelArray = new Array("Nombre y Apellido","Empresa","Correo electrónico","Solicitud");
 
+// Variables para captcha simple
+var captchaNum1 = 0;
+var captchaNum2 = 0;
+var captchaAnswer = 0;
+
+function generateSimpleCaptcha() {
+    captchaNum1 = Math.floor(Math.random() * 10) + 1;
+    captchaNum2 = Math.floor(Math.random() * 10) + 1;
+    captchaAnswer = captchaNum1 + captchaNum2;
+    document.getElementById('captchaQuestion').textContent = captchaNum1 + ' + ' + captchaNum2 + ' = ?';
+}
+
 function reformatAllDateFields() {
 const dateFields = document.querySelectorAll('.dob-field');
 dateFields.forEach(field => {
@@ -822,9 +861,13 @@ return false;
 }
 }
 if(isError == 0){
-if(document.forms['zsWebToCase_1245088000000523070']['zsWebFormCaptchaWord'].value.replace(/^\s+|\s+$/g, '').length == 0){
-alert('Introduzca el código captcha');
-document.forms['zsWebToCase_1245088000000523070']['zsWebFormCaptchaWord'].focus();
+// Validar captcha simple
+var userAnswer = parseInt(document.getElementById('simpleCaptchaInput').value);
+if(isNaN(userAnswer) || userAnswer !== captchaAnswer){
+alert('La respuesta del captcha es incorrecta. Por favor, intenta de nuevo.');
+generateSimpleCaptcha();
+document.getElementById('simpleCaptchaInput').value = '';
+document.getElementById('simpleCaptchaInput').focus();
 return false;
 }
 }
@@ -1064,14 +1107,13 @@ webFormxhr.send();
 }
 
 document.addEventListener('readystatechange',function(){
-if(document.readyState === 'complete' && window.zsRegenerateCaptcha ){
-zsRegenerateCaptcha();
+if(document.readyState === 'complete'){
+generateSimpleCaptcha();
 }
 setAllDependancyFieldsMapping();
 document.getElementById('zsSubmitButton_1245088000000523070').removeAttribute('disabled');
 zsAttachedAttachmentsCount = 0;
 zsAttachmentFileBrowserIdsList = [1, 2, 3, 4, 5];
-document.forms['zsWebToCase_1245088000000523070']['zsWebFormCaptchaWord'].value = '';
 jQuery('#zsFileBrowseAttachments').html('');
 jQuery.each(jQuery('input[type = file]'), function(fileIndex, fileObject){
 var zsAttachmentId = jQuery(fileObject).attr('id');
