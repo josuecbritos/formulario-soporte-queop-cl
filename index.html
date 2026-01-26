@@ -564,12 +564,7 @@ const submitButton = document.getElementById('zsSubmitButton_1245088000000523070
 if (submitButton) {
   submitButton.removeAttribute('disabled');
 }
-const captchaTextField = document.forms['zsWebToCase_1245088000000523070']['zsWebFormCaptchaWord'];
-if(window.zsRegenerateCaptcha && captchaTextField.value) {
-captchaTextField.value = '';
-captchaTextField.focus();
-zsRegenerateCaptcha();
-}
+generateSimpleCaptcha();
 });
 
 function trimBoth(str){
@@ -1150,6 +1145,8 @@ document.forms['zsWebToCase_1245088000000523070']['zsCloudPickerAttachments'].va
 }
 zsRearrangeFileBrowseAttachments();
 zsChangeMousePointer();
+generateSimpleCaptcha();
+document.getElementById('simpleCaptchaInput').value = '';
 }
 </script>
 </head>
@@ -1223,24 +1220,20 @@ Ingresa tus datos, describe tu solicitud y adjunta archivos si es necesario. Pre
 </td>
 </tr>
 <tr>
-<td nowrap class='zsFontClass' width='25%' align='left'>Captcha&nbsp;</td>
-<td>
-<div id='zsCaptchaLoading'><strong>Cargando…<br><br></strong></div>
-<div id='zsCaptcha' style='display:none;'>
-<img src='#' id='zsCaptchaUrl' name="zsCaptchaImage">
-<a href='javascript:;' style='color:#00a3fe; cursor:pointer; margin-left:10px; vertical-align:middle;text-decoration: none;' class='zsFontClass' onclick='zsRegenerateCaptcha()'>Actualizar</a>
-</div>
-<div>
-<input type='text' name='zsWebFormCaptchaWord'/>
-<input type='hidden' name='zsCaptchaSrc' value=''/>
+<td nowrap class='zsFontClass' width='25%' align='left'>Verificación&nbsp;</td>
+<td align='left' width='75%'>
+<div class="simple-captcha">
+<span class="captcha-question" id="captchaQuestion"></span>
+<input type='text' id='simpleCaptchaInput' class='captcha-input' maxlength='3' autocomplete='off'/>
 </div>
 </td>
 </tr>
 <tr>
-<td style='padding: 11px 5px 0px 5px;' colspan='2' align='center' width='25%'>
+<td style='padding: 11px 5px 0px 5px;' colspan='2' width='25%'>
+<div class="button-container">
+<input type='button' class='zsFontClass' value='Cancelar' onclick="zsResetWebForm('1245088000000523070')">
 <input type='submit' id="zsSubmitButton_1245088000000523070" class='zsFontClass' value='Enviar'>
-&nbsp; &nbsp;
-<input type='button' class='zsFontClass' value='Restablecer' onclick="zsResetWebForm('1245088000000523070')">
+</div>
 </td>
 </tr>
 </table>
