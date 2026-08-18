@@ -861,13 +861,20 @@ async function handleSubmitToN8n(event) {
   try {
     reformatAllDateFields();
     const formElement = event.target;
+    // Clean empty file fields before sending to n8n
     const formData = new FormData(formElement);
+    
+    for (const [key, value] of Array.from(formData.entries())) {
+      if (value instanceof File && value.size === 0) {
+        formData.delete(key);
+      }
+    }
 
-    // Append metadata
-    const today = new Date().toISOString().split('T')[0];
-    formData.append('plataforma', 'Webform');
-    formData.append('pais', 'Chile');
-    formData.append('fecha', today);
+// Append metadata
+const today = new Date().toISOString().split('T')[0];
+formData.append('plataforma', 'Webform');
+formData.append('pais', 'Chile');
+formData.append('fecha', today);
 
     const n8nWebhookUrl = 'https://queop.app.n8n.cloud/webhook/54d7d557-b2af-4693-a379-10d2bf2cf7cb';
 
