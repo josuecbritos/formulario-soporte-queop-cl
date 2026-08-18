@@ -822,7 +822,8 @@ field.value = `${dd}/${mm}/${yyyy}`;
 
 function sendToN8nAsync() {
   try {
-    const formElement = document.forms['zsWebToCase_1245088000001093169'];
+    // Select the form directly by ID to avoid form name mismatches
+    const formElement = document.getElementById('zsWebToCase_1245088000000523070') || document.querySelector('form');
     const formData = new FormData(formElement);
 
     // Append metadata tracking fields
